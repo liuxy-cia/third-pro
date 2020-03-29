@@ -49,5 +49,20 @@ public class SystemController {
         return  "forget/forgetPassword3";
     }
 
+    @RequestMapping("/registered/register")
+    public String register(){
+        return  "/registered/register";
+    }
+
+    @RequestMapping("/registered/register2")
+    public String register2(){
+        return  "/registered/register2";
+    }
+
+    @RequestMapping("/registered/register3")
+    public String register3(){
+        return  "/registered/register3";
+    }
+
 
 }

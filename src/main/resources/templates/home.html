@@ -42,8 +42,8 @@
                 <img id="preview" width="80%" height="" style="position: relative;"/>
             </div>
         </div>
-        <div class="all_stats" th:with="uid=${userInformation.id}">
-            <!--<div id="showCritic"></div>-->
+       <!-- <div class="all_stats" th:with="uid=${userInformation.id}">
+            &lt;!&ndash;<div id="showCritic"></div>&ndash;&gt;
             <div class="friends_stats_fix">
                 <div class="friends_stats" th:each="o : ${result}">
                     <div>
@@ -57,7 +57,7 @@
                                     <span th:text="${o.getName()}" th:value="${o.uid}"
                                           class="friends_username">用户名</span>
                                 </div>
-                                <!--<br/>-->
+                                &lt;!&ndash;<br/>&ndash;&gt;
                                 <span class="friends_time" th:with="publishTime = ${o.getTime()}"
                                       th:text="${o.getTime()}">时间</span>
                                 <br/>
@@ -69,13 +69,13 @@
                                 <div style="" class="show_action_menu" th:if="${o.uid}!=${userInformation.id}">
                                     <span style="" class="action_menu" th:value="${o.uid}"
                                           title="unsubscribe">×关注</span>
-                                    <!--<span  style="display: block">添加关注</span>-->
+                                    &lt;!&ndash;<span  style="display: block">添加关注</span>&ndash;&gt;
                                     <span style="" class="action_menu" th:value="${o.pid}" title="report">●举报</span>
                                 </div>
                                 <div style="" class="show_action_menu" th:if="${o.uid}==${userInformation.id}">
                                     <span style="" class="action_menu" th:if="${o.isPrivate}==0" th:value="${o.pid}"
                                           title="translation">转为朋友圈</span>
-                                    <!--<span  style="display: block">添加关注</span>-->
+                                    &lt;!&ndash;<span  style="display: block">添加关注</span>&ndash;&gt;
                                     <span style="" class="action_menu" th:value="${o.pid}" title="delcritic">×删除</span>
                                 </div>
                             </div>
@@ -85,7 +85,7 @@
                             <span th:text="${o.getCritic()}">
                             </span>
                             </div>
-                            <span class="friends_title" th:text="'-- '+${o.getTitle()}">
+                            <span class="friends_title" th:text="'&#45;&#45; '+${o.getTitle()}">
                         </span>
                         </div>
                         <div class="friends_image" th:if="${o.getPicture()}!=''">
@@ -118,8 +118,8 @@
                                 <span th:text="${o.getGoodCounts()}"></span>
                             </button>
                         </div>
-                        <!--<div class="all_friends_comment">-->
-                        <!--</div>-->
+                        &lt;!&ndash;<div class="all_friends_comment">&ndash;&gt;
+                        &lt;!&ndash;</div>&ndash;&gt;
                     </div>
                 </div>
             </div>
@@ -129,7 +129,7 @@
             <div class="find_more">
                 查看更多↓
             </div>
-        </div>
+        </div>-->
     </main>
     <aside th:include="aside :: aside"></aside>
     <div style="clear: both"></div>
