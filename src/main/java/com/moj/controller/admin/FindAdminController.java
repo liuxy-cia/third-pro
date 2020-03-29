@@ -36,6 +36,7 @@ public class FindAdminController {
         }
         if(!password.equals(admin.getPassword())){
             model.addAttribute("error", "密码错误！");
+            System.out.println(11111);
             return "admin/login";
         }
 
