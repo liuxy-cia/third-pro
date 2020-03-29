@@ -1,5 +1,6 @@
 package com.moj.service.impl;
 
+import com.moj.entity.Userinformation;
 import com.moj.entity.Userlogin;
 import com.moj.mapper.UserMapper;
 import com.moj.service.UserService;
@@ -16,5 +17,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
     public Userlogin findByAccount(String username) {
         return userMapper.findByAccount(username);
+    }
+    public Userinformation findById(int id) {
+        return userMapper.findById(id);
     }
 }

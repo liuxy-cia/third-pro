@@ -1,5 +1,6 @@
 package com.moj.mapper;
 
+import com.moj.entity.Userinformation;
 import com.moj.entity.Userlogin;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -10,4 +11,5 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserMapper {
     public Userlogin findByAccount(@Param("username") String username);
+    public Userinformation findById(@Param("id")int id);
 }
