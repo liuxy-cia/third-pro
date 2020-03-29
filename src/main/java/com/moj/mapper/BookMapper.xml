@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.moj.mapper.BookMapper">
+    <select id="findAllBook" resultType="com.moj.entity.Book">
+        select * from book
+    </select>
+
+    <select id="findByTit" resultType="com.moj.entity.Book" parameterType="String">
+        <bind name="book_title" value="'%' + title + '%'"/>
+        SELECT * FROM book WHERE title LIKE #{book_title}
+    </select>
+
+    <select id="findByAut" resultType="com.moj.entity.Book" parameterType="String">
+        <bind name="book_author" value="'%' + author + '%'"/>
+        SELECT * FROM book WHERE title LIKE #{book_author}
+    </select>
+
+    <select id="lookForIn" resultType="com.moj.entity.Book" parameterType="String">
+        SELECT * FROM book WHERE id = #{bookId}
+    </select>
+</mapper>

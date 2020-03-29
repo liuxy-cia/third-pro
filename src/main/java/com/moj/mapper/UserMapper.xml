@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moj.mapper.UserMapper">
+    <select id="findByAccount" resultType="com.moj.entity.Userlogin">
+        select * from userlogin where account = #{use   rname}
+
+    </select>
+</mapper>
