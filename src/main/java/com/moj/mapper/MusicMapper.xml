@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moj.mapper.MusicMapper">
+
+    <resultMap id="allMusicResultMap" type="com.moj.entity.Wangyimusic">
+        <id column="id" property="id"></id>
+        <result column="songid" property="songid"></result>
+        <result column="name" property="name"></result>
+        <result column="singerid" property="singerid"></result>
+        <result column="albumid" property="albumid"></result>
+        <result column="alias" property="alias"></result>
+        <result column="picurl" property="picurl"></result>
+        <result column="url" property="url"></result>
+        <result column="status" property="status"></result>
+        <collection property="wangyisinger" ofType="com.moj.entity.Wangyisinger">
+            <id column="id" property="id"></id>
+            <result column="singerid" property="singerid"></result>
+            <result column="songname" property="songname"></result>
+            <result column="songid" property="songid"></result>
+        </collection>
+        <collection property="wangyialbum" ofType="com.moj.entity.Wangyialbum">
+            <id column="id" property="id"></id>
+            <result column="albumid" property="albumid"></result>
+            <result column="albumname" property="albumname"></result>
+            <result column="publishtime" property="publishtime"></result>
+            <result column="picid" property="picid"></result>
+            <result column="songid" property="songid"></result>
+        </collection>
+    </resultMap>
+
+    <select id="showAllMusic" resultMap="allMusicResultMap" >
+        SELECT a.*,alb.`albumname`,alb.`publishtime` FROM
+        (SELECT mus.*,sing.`songname` FROM wangyimusic mus LEFT JOIN wangyisinger sing ON mus.`singerid`=sing.`singerid`)a
+        LEFT JOIN wangyialbum alb ON a.songid=alb.songid
+    </select>
+</mapper>

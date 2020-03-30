@@ -4,6 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.moj.mapper.UserloginMapper">
     <update id="updatePwd" parameterType="com.moj.entity.Userlogin">
-        update userlogin set account=#{account},password=#{password}
+        update userlogin set account=#{account}
     </update>
 </mapper>
