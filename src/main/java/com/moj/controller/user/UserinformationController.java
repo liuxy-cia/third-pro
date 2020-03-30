@@ -21,6 +21,7 @@ public class UserinformationController {
         Userinformation userinformation = this.userinformation1.selectUserinformation(phone);
         System.out.println(userinformation.getAddress());
         System.out.println(userinformation.getAddress());
+        System.out.println(userinformation.getAddress());
          model.addAttribute("userInformation", userinformation);
        return "setting/AccountSettings";
 
