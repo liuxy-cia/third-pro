@@ -64,5 +64,8 @@ public class SystemController {
         return  "/registered/register3";
     }
 
-
+    @RequestMapping("/setting/Security")
+    public String security(){
+        return  "/setting/Security";
+    }
 }

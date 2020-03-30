@@ -2,11 +2,11 @@
  *
  */
 function loadimage() {
-    document.getElementById("identity").src = "image.jsp?" + new Date().getTime();
+    /*document.getElementById("identity").src = "image.jsp?" + new Date().getTime();*/
 }
 $(function () {
     var right_phone = false;
-    var right_photo = false;
+    var right_photo = true;
     var right_code_phone = false;
     var phone = $('.phone');
     var photo = $('.photo');
@@ -39,7 +39,7 @@ $(function () {
             toolphoto.hide();
             toolphone2.hide();
     })
-    code_phone.focus(function () {
+    /*code_phone.focus(function () {
         if (!(/^1[0-9]{10}$/.test(phone.val()))) {
             toolphone.show();
             toolphoto.hide();
@@ -56,7 +56,7 @@ $(function () {
             toolphoto2.hide();
             right_photo = true;
         }
-    })
+    })*/
     //send Email to the user`s phont
     $('.get').click(function () {
         if (!(/^1[0-9]{10}$/.test(phone.val()))) {
@@ -67,36 +67,38 @@ $(function () {
             toolphone.hide();
             right_phone = true;
         }
-        if (photo.val() == "") {
+        /*if (photo.val() == "") {
             toolphoto2.show();
             right_photo = false;
             return;
         } else {
             toolphoto2.hide();
             right_photo = true;
-        }
+        }*/
+
         if (right_phone && right_photo){
             $.ajax({
                 type:"post",
-                url:"sendEmail",
+                url:"/sendCode",
                 dataType:"JSON",
-                data:{phone:phone.val(),photo:photo.val(),action:'forget'},
-                success:function (data) {
+                data:{phone:phone.val(),action:'forget'},
+                success:function (msg) {
                     //send code by email;
-                    var result = data.result;
-                    if (result == '0'){
+                    var data = msg.status;
+                    $(".code").text(msg.code);
+                    if (data == '0'){
                         toolphoto.show();
                         loadimage();
-                    } else if (result == '1'){
+                    } else if (data == '1'){
                         changeSendEmailButton();
-                        toolphone2.hide();
-                    } else if (result == '-1'){
+                        toolphone2.hide();  /*发送成功了，开始读秒*/
+                    } else if (data == '-1'){
                         toolphone2.show();
-                        loadimage();
+                        loadimage(); /*该用户不存在*/
                     }
                 },
                 error:function () {
-                    toolphone2.show();
+                    toolphone2.show();  /*该用户不存在*/
                     loadimage();
                 }
 
@@ -105,14 +107,20 @@ $(function () {
     });
     $('.next').click(function () {
         allValue();
-        if (right_code_phone && right_phone && right_photo){
-            $.ajax({
+        if(code_phone.val() == $(".code").text()){
+            right_code_phone = true;
+        }
+        if (right_code_phone && right_phone){
+            alert("success");
+            $('.form').submit();
+           /* $.ajax({
                 type:"post",
-                url:"checkPhone",
+                url:"/system/forget/forgetPassword2",
                 dataType:"JSON",
-                data:{photo:photo.val(),code_phone:code_phone.val()},
+                data:{phone:phone.val()},
                 success:function (data) {
-                    //photo code 
+                    $('.form').submit();
+                   //photo code
                     var result = data.result;
                     if (result == '2'){
                         toolphoto.show();
@@ -128,7 +136,7 @@ $(function () {
                     toolphoto.show();
                     loadimage();
                 }
-            });
+            });*/
         }
     });
     $("body").keydown(function() {
