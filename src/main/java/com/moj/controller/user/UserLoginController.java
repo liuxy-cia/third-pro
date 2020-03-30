@@ -49,9 +49,8 @@ public class UserLoginController {
         model.addAttribute("result",myfriends);
         //modelAndView.setViewName("home");
         //modelAndView.addObject("result",myfriends);
-
-
-
+        //把userInformation 存储到session里面，其他页面获取信息
+        request.getSession().setAttribute("userInformation",userService.findById(user.getId()));
 
 
         return "home";

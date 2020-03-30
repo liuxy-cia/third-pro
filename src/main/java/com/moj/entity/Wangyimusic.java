@@ -19,6 +19,26 @@ public class Wangyimusic {
 
     private Integer status;
 
+    private Wangyisinger wangyisinger;
+
+    private Wangyialbum wangyialbum;
+
+    public Wangyisinger getWangyisinger() {
+        return wangyisinger;
+    }
+
+    public void setWangyisinger(Wangyisinger wangyisinger) {
+        this.wangyisinger = wangyisinger;
+    }
+
+    public Wangyialbum getWangyialbum() {
+        return wangyialbum;
+    }
+
+    public void setWangyialbum(Wangyialbum wangyialbum) {
+        this.wangyialbum = wangyialbum;
+    }
+
     public Integer getId() {
         return id;
     }

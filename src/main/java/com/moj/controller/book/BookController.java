@@ -1,6 +1,9 @@
 package com.moj.controller.book;
 
+import com.moj.controller.user.UserLoginController;
 import com.moj.entity.Book;
+import com.moj.entity.Myfriends;
+import com.moj.entity.Userinformation;
 import com.moj.service.impl.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,29 +23,32 @@ import java.util.List;
 public class BookController {
     @Autowired
     private BookServiceImpl bookService;
+    @Autowired
+    private UserLoginController userLoginController;
    /* @Autowired
     private MovieNameMapper movieNameMapper;*/
 
     // 初始化图书信息
     @RequestMapping(value = "/init")
-    public ModelAndView bookInit(/*HttpServletRequest request,*/ ModelAndView model){
-        //UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+    public String bookInit(HttpServletRequest request, Model model){
+        Userinformation userInformation = (Userinformation) request.getSession().getAttribute("userInformation");
         List<Book> entities = bookService.findAllBook();
         for (Book entity : entities) {
             entity.setTranslator(entity.getTranslator().replace("[\"", "").replace("\"]", "").replace("\"", ""));
             entity.setAuthor(entity.getAuthor().replace("[\"", "").replace("\"]", "").replace("\"", ""));
         }
-        model.addObject("entity",entities);
-        model.setViewName("book/init");
-        //model.addAttribute("entity", entities);
-        /*model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
+       /* model.addObject("entity",entities);
+        model.setViewName();*/
+        Myfriends myfriends = new Myfriends();
+        model.addAttribute("entity", entities);
+        model.addAttribute("myFriends", myfriends);
         model.addAttribute("userInformation", userInformation);
         model.addAttribute("username", userInformation.getName());
         model.addAttribute("autograph", userInformation.getAutograph());
-        model.addAttribute("action", 7);*/
+        model.addAttribute("action", 7);
        // userController.getUserCounts(model, userInformation.getId());
 
-        return model;
+        return "book/init";
     }
 
     @RequestMapping("/findAll")
@@ -57,7 +63,7 @@ public class BookController {
     //图书详情
     @RequestMapping(value = "/book_information/{bookId}")
     public String bookInformation(@PathVariable("bookId") long bookId, HttpServletRequest request, Model model) {
-        //UserInformation userInformation = (UserInformation) request.getSession().getAttribute("userInformation");
+        Userinformation userInformation = (Userinformation) request.getSession().getAttribute("userInformation");
         String id = Long.toString(bookId);
         Book entity = bookService.lookForIn(id);
         if (null == entity) {
@@ -72,10 +78,10 @@ public class BookController {
             entity.setAuthorIntro(entity.getAuthorIntro().replace("\n","<br/>"));
         }
         model.addAttribute("entity", entity);
-       /* model.addAttribute("myFriends", userController.getMyFriends(userInformation.getId()));
+       // model.addAttribute("myFriends",);
         model.addAttribute("userInformation", userInformation);
         model.addAttribute("username", userInformation.getName());
-        model.addAttribute("autograph", userInformation.getAutograph());*/
+        model.addAttribute("autograph", userInformation.getAutograph());
         model.addAttribute("action", 7);
         //userController.getUserCounts(model, userInformation.getId());
 
