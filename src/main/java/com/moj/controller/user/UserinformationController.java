@@ -20,8 +20,7 @@ public class UserinformationController {
     public String selectUserinformation(Model model,String phone){
         Userinformation userinformation = this.userinformation1.selectUserinformation(phone);
         System.out.println(userinformation.getAddress());
-        System.out.println(userinformation.getAddress());
-        System.out.println(userinformation.getAddress());
+
          model.addAttribute("userInformation", userinformation);
        return "setting/AccountSettings";
 
