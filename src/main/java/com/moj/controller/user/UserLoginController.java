@@ -55,4 +55,17 @@ public class UserLoginController {
 
         return "home";
     }
+
+    @RequestMapping(value = "/modify")
+    public String modify(@RequestParam String password,HttpServletRequest request,Model model){
+        String phone = (String) request.getSession().getAttribute("phone");
+        System.out.println(phone);
+        Userlogin userlogin = new Userlogin();
+        userlogin.setAccount(phone);
+        userlogin.setPassword(password);
+        userService.updatePwd(userlogin);
+        model.addAttribute("phone",phone);
+        model.addAttribute("password",password);
+        return "/forget/forgetPassword3";
+    }
 }

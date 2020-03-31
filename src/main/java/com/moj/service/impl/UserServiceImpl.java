@@ -21,4 +21,8 @@ public class UserServiceImpl implements UserService {
     public Userinformation findById(int id) {
         return userMapper.findById(id);
     }
+    public int updatePwd(Userlogin userlogin){
+        return userMapper.updatePwd(userlogin);
+    }
+
 }

@@ -12,4 +12,5 @@ import org.apache.ibatis.annotations.Param;
 public interface UserMapper {
     public Userlogin findByAccount(@Param("username") String username);
     public Userinformation findById(@Param("id")int id);
+    public int updatePwd(@Param("userlogin")Userlogin userlogin);
 }

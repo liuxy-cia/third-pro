@@ -2,6 +2,10 @@ package com.moj.controller.system;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/system")
@@ -40,7 +44,9 @@ public class SystemController {
     }
 
     @RequestMapping("/forget/forgetPassword2")
-    public String forgetPassword2(){
+    public String forgetPassword2(@RequestParam String phone, HttpServletRequest request){
+        System.out.println(phone);
+        request.getSession().setAttribute("phone",phone);
         return  "forget/forgetPassword2";
     }
 

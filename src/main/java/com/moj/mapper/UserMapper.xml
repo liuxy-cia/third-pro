@@ -11,4 +11,8 @@
     <select id="findById" resultType="com.moj.entity.Userinformation">
         select * from userinformation where id = #{id}
     </select>
+    <update id="updatePwd" parameterType="com.moj.entity.Userlogin">
+        update userlogin set password = #{userlogin.password} where account =
+        #{userlogin.account}
+    </update>
 </mapper>
