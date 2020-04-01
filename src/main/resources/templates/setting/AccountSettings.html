@@ -21,7 +21,8 @@
         });
     })
 </script>
-<header th:include="header :: copy"></header>
+<input type="text" name="userid" class="new-name-text" value="${id}" />
+<!--<header th:include="header :: copy"></header>-->
 <div class="all_content">
     <main>
         <div class="all_main">
@@ -77,7 +78,7 @@
                         wsk1103
                     </span>
                 </div>
-                <form action="/modified" method="post">
+                <form action="/setting/modified" method="post">
                     <div class="new-name">
                         <span class="">
                             新昵称
@@ -114,7 +115,7 @@
                         wsk1103
                     </span>
                 </div>
-                <form action="/modified" method="post">
+                <form action="/setting/modified" method="post">
                     <div class="new-tel">
                         <span class="">
                             新手机号码
@@ -139,7 +140,7 @@
                 </label>
                     </div>
                         <div class="set-sex">
-                            <form action="/modified" method="post">
+                            <form action="/setting/modified" method="post">
                                 <div class="select">
                                     <span>
                                         性别选择
@@ -165,7 +166,7 @@
                         </span>
                     </div>
                     <div>
-                        <form action="/modified" method="post">
+                        <form action="/setting/modified" method="post">
                             <div class="set-birth">
                                 <p>
                                     请选择日期：
@@ -191,7 +192,7 @@
                     </span>
                 </div>
                 <div class="set-introduction">
-                    <form action="/modified" method="post">
+                    <form action="/setting/modified" method="post">
                         <div>
                             <div class="now-introduction">
                                 <span>
@@ -231,7 +232,7 @@
                     </label>
                 </div>
             <div class="set-address">
-                <form action="/modified" method="post">
+                <form action="/setting/modified" method="post">
                     <div>
                         <input type="text" id="address" autocomplete="off" readonly="readonly" class="u-ipt u-ipt-lg" value="请选择城市" name="city"/>
                     </div>
