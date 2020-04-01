@@ -28,6 +28,7 @@ public class Userlogin1Controller {
         Userlogin userlogin = userloginService.updatePwd(account);
         System.out.println(userlogin.getPassword());
         System.out.println(userlogin.getPassword());
+        System.out.println(userlogin.getPassword());
         if(old_password.equals(userlogin.getPassword())){
             if(!old_password.equals(new_password)){
                 model.addAttribute("error","成功");
