@@ -2,7 +2,7 @@
  *
  */
 function loadimage() {
-	document.getElementById("identity").src = "image.jsp?" + new Date().getTime();
+	/*document.getElementById("identity").src = "image.jsp?" + new Date().getTime();*/
 }
 //function validate(){
 //	var i=form.photo.value;
@@ -212,7 +212,7 @@ function loadimage() {
 // }
 $(function () {
 	var right_phone = false;
-	var right_photo = false;
+	var right_photo = true;
 	var right_code_phone = false;
 	var phone = $('.phone');
 	var photo = $('.photo');
@@ -255,14 +255,14 @@ $(function () {
 			toolphone.hide();
 			right_phone = true;
 		}
-		if (photo.val() == "") {
+		/*if (photo.val() == "") {
 			toolphoto2.show();
 			toolphoto.hide();
 			toolphone2.hide();
 		} else {
 			toolphoto2.hide();
 			right_photo = true;
-		}
+		}*/
 	});
 	$('.getProtocol').click(function () {
         $('.show_protocol').show();
@@ -270,7 +270,7 @@ $(function () {
 	$('.protocol_close').click(function () {
         $('.show_protocol').hide();
     });
-	//send Email to the user`s phont
+	//send Email to the user`s phone
 	$('.get').click(function () {
 		var receive = $('.receive');
 		if (!agree.is(':checked')){
@@ -289,32 +289,33 @@ $(function () {
 			toolphone.hide();
 			right_phone = true;
 		}
-		if (photo.val() == "") {
+		/*if (photo.val() == "") {
 			toolphoto2.show();
 			right_photo = false;
 			return;
 		} else {
 			toolphoto2.hide();
 			right_photo = true;
-		}
+		}*/
 		if (right_phone && right_photo){
 			$.ajax({
 				type:"post",
-				url:"sendEmail",
+				url:"/register",
 				dataType:"JSON",
-				data:{phone:phone.val(),photo:photo.val(),action:'register'},
-				success:function (data) {
+				data:{phone:phone.val(),action:'register'},
+				success:function (msg) {
 					//send code by email;
-					var result = data.result;
-					if (result == '0'){
+					var data = msg.status;
+					$(".code").text(msg.code);  //把后台发送的code存放到标签中  用于接下来的比较验证码正确
+					if (data == '0'){
 						toolphoto.show();
 						loadimage();
-					} else if (result == '1'){
+					} else if (data == '1'){
 						changeSendEmailButton();
-						toolphone2.hide();
-					} else if (result == '-1'){
+						toolphone2.hide();  /*发送成功了，开始读秒*/
+					} else if (data == '-1'){
 						toolphone2.show();
-						loadimage();
+						loadimage(); /*该用户已经被注册*/
 					}
 				},
 				error:function () {
@@ -327,6 +328,7 @@ $(function () {
 	});
 	$('.next').click(function () {
 		allValue();
+		
 		var receive = $('.receive');
 		if (!agree.is(':checked')){
 			$(receive).text('请先阅读并接受协议');
@@ -336,15 +338,16 @@ $(function () {
 			$(receive).text('我已仔细阅读并接受');
 			$(receive).css({'color':'black'});
 		}
-		if (right_code_phone && right_phone && right_photo){
+		if (right_code_phone && right_phone){
+
 			$.ajax({
 				type:"post",
-				url:"checkPhone",
+				url:"/eqCode",
 				dataType:"JSON",
-				data:{photo:photo.val(),code_phone:code_phone.val()},
+				data:{photo:photo.val(),code:code_phone.val()},
 				success:function (data) {
 					//photo code
-					var result = data.result;
+					var result = data.status;
 					if (result == '2'){
 						toolphoto.show();
 						loadimage();
@@ -356,7 +359,7 @@ $(function () {
 					}
 				},
 				error:function () {
-					toolphoto.show();
+					toolnum.show();
 					loadimage();
 				}
 			})

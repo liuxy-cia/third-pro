@@ -10,4 +10,7 @@
         update userinformation set address=#{address},autograph=#{autograph},birtday=#{birtday},label=#{label},name=#{name},
         phone=#{phone},sex=#{sex} where id=#{id}
     </update>
+    <insert id="addUserInfo">
+        insert into userinformation(buildtime,name,phone) value (#{buildtime},#{name},#{phone})
+    </insert>
 </mapper>

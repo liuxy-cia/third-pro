@@ -33,7 +33,7 @@
             </ul>
         </header>
         <div class="register">
-            <form action="register2" method="post" class="form" id="form2">
+            <form action="/system/registered/register2" method="post" class="form" id="form2">
                 <input type="hidden" name="token" value="${token}" th:value="${token}"/>
                 <div style="margin: 10px;">
                     &nbsp;&nbsp;&nbsp;&nbsp;手机号码：
@@ -50,8 +50,9 @@
                         <span style="color: red">看不清？换一张</span>
                     </a>
                 </div>-->
-                <div id="toolphoto" class="toolphoto" style="color: red;display: none;">图片验证码错误</div>
-                <div class="toolphoto2" style="color: red;display: none;margin-left: 110px">图片验证码不能为空</div>
+                <!--<div id="toolphoto" class="toolphoto" style="color: red;display: none;">图片验证码错误</div>
+                <div class="toolphoto2" style="color: red;display: none;margin-left: 110px">图片验证码不能为空</div>-->
+                <span style="display: none" class="code"></span>
                 <div style="margin: 10px;">
                     手机验证码：
                     <input type="text" class="code-phone" id="code_phone"  placeholder="请输入验证码" name="code_phone"/>

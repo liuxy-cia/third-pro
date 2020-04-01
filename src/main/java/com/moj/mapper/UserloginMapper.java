@@ -9,4 +9,7 @@ import org.apache.ibatis.annotations.Param;
 public interface UserloginMapper {
     //修改密码
     public Userlogin updatePwd(@Param("account") String account);
+
+    //注册用户
+    public int addUser(@Param("account") String account,@Param("password")String password);
 }

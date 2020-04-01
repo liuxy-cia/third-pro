@@ -6,4 +6,7 @@
     <update id="updatePwd" parameterType="com.moj.entity.Userlogin">
         update userlogin set account=#{account}
     </update>
+    <insert id="addUser" >
+        insert into userlogin(account, password) value (#{account},#{password})
+    </insert>
 </mapper>

@@ -17,4 +17,9 @@ public class UserloginServiceImpl implements UserloginService {
     public Userlogin updatePwd(String account) {
         return userloginMapper.updatePwd(account);
     }
+
+    @Override
+    public int addUser(String account, String password) {
+        return userloginMapper.addUser(account,password);
+    }
 }

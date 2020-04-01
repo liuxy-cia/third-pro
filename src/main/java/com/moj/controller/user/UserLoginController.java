@@ -1,5 +1,7 @@
 package com.moj.controller.user;
 
+import com.moj.controller.sendCode.SendCode;
+import com.moj.controller.sendCode.entity.CodeResult;
 import com.moj.entity.Myfriends;
 import com.moj.entity.Userlogin;
 import com.moj.service.UserService;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +28,6 @@ public class UserLoginController {
     //@ResponseBody
     public String login(@RequestParam String username, @RequestParam String password,
                         Model model, HttpServletRequest request, HttpServletResponse response){
-        System.out.println(123);
         //ModelAndView modelAndView = new ModelAndView();
         if (StringUtils.isBlank(username) && StringUtils.isBlank(password)) {
             model.addAttribute("error", "账号或者密码不能为空");
@@ -67,5 +70,24 @@ public class UserLoginController {
         model.addAttribute("phone",phone);
         model.addAttribute("password",password);
         return "/forget/forgetPassword3";
+    }
+
+    @RequestMapping(value = "/register")
+    @ResponseBody
+    public CodeResult register(HttpServletRequest request, Model model)throws Exception{
+        String phone = request.getParameter("phone");
+        model.addAttribute("phone",phone);
+        Userlogin user = userService.findByAccount(phone);
+        CodeResult codeResult = new CodeResult();
+        if(user!=null){
+            codeResult.setStatus(-1);
+            codeResult.setCode("");
+        }else{
+
+            codeResult.setCode( SendCode.send(request,phone));
+            codeResult.setStatus(1);
+        }
+
+        return codeResult;
     }
 }

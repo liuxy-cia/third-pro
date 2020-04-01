@@ -107,21 +107,28 @@ $(function () {
     });
     $('.next').click(function () {
         allValue();
-        if(code_phone.val() == $(".code").text()){
-            right_code_phone = true;
+        if(code_phone.val()!=""){
+            if(code_phone.val() == $(".code").text()){
+                right_code_phone = true;
+            }else{
+                toolnum.show();
+                right_code_phone=false;
+                right_phone=false;
+            }
         }
+
         if (right_code_phone && right_phone){
-            alert("success");
-            $('.form').submit();
-           /* $.ajax({
+
+
+            $.ajax({
                 type:"post",
-                url:"/system/forget/forgetPassword2",
+                url:"/eqCode",
                 dataType:"JSON",
-                data:{phone:phone.val()},
+                data:{phone:phone.val(),code:code_phone.val()},
                 success:function (data) {
                     $('.form').submit();
                    //photo code
-                    var result = data.result;
+                    var result = data.status;
                     if (result == '2'){
                         toolphoto.show();
                         loadimage();
@@ -129,14 +136,15 @@ $(function () {
                         toolnum.show();
                         loadimage();
                     } else  if (result == '1'){
+                        alert("success")
                         $('.form').submit();
                     }
                 },
                 error:function () {
-                    toolphoto.show();
+                    toolnum.show();
                     loadimage();
                 }
-            });*/
+            });
         }
     });
     $("body").keydown(function() {

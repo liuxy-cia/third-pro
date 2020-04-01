@@ -5,7 +5,6 @@
 <mapper namespace="com.moj.mapper.UserMapper">
     <select id="findByAccount" resultType="com.moj.entity.Userlogin">
         select * from userlogin where account = #{username}
-
     </select>
 
     <select id="findById" resultType="com.moj.entity.Userinformation">

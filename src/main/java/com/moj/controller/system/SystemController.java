@@ -1,6 +1,8 @@
 package com.moj.controller.system;
 
+import com.moj.tool.Tool;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -56,12 +58,15 @@ public class SystemController {
     }
 
     @RequestMapping("/registered/register")
-    public String register(){
+    public String register(Model model){
+        model.addAttribute("txt", Tool.getProtocolTxt());
         return  "/registered/register";
     }
 
     @RequestMapping("/registered/register2")
-    public String register2(){
+    public String register2(HttpServletRequest request,Model model){
+        String phone = request.getParameter("phone");
+        model.addAttribute("phone",phone);
         return  "/registered/register2";
     }
 
