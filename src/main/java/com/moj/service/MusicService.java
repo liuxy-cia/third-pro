@@ -1,6 +1,7 @@
 package com.moj.service;
 
 import com.moj.entity.Wangyimusic;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,5 +15,7 @@ public interface MusicService {
     public List<Wangyimusic> showAllUp();
 
     public List<Wangyimusic> showAllNew();
+
+    public Wangyimusic showMusicInformation(int id);
 
 }

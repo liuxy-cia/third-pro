@@ -32,4 +32,9 @@ public class MusicServiceImpl implements MusicService {
     public List<Wangyimusic> showAllNew() {
         return musicMapper.showAllNew();
     }
+
+    @Override
+    public Wangyimusic showMusicInformation(int id) {
+        return musicMapper.showMusicInformation(id);
+    }
 }

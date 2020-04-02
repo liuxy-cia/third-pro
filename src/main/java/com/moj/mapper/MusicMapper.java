@@ -1,6 +1,7 @@
 package com.moj.mapper;
 
 import com.moj.entity.Wangyimusic;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,5 +17,7 @@ public interface MusicMapper {
     public List<Wangyimusic> showAllUp();
 
     public List<Wangyimusic> showAllNew();
+
+    public Wangyimusic showMusicInformation(@Param("id")int id);
 
 }

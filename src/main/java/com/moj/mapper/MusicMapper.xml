@@ -31,24 +31,34 @@
     </resultMap>
 
     <select id="showAllHot" resultMap="allMusicResultMap" >
-        SELECT a.*,alb.`albumname`,alb.`publishtime` FROM
+        /*SELECT a.*,alb.`albumname`,alb.`publishtime` FROM
         (SELECT mus.*,sing.`songname` FROM wangyimusic mus LEFT JOIN wangyisinger sing ON mus.`singerid`=sing.`singerid`)a
         LEFT JOIN wangyialbum alb ON a.songid=alb.songid
-        WHERE a.id BETWEEN 63721 AND 190499
+        WHERE a.id BETWEEN 63721 AND 190499*/
+        SELECT mus.* FROM wangyimusic mus WHERE mus.id BETWEEN 63721 AND 190499
     </select>
 
     <select id="showAllUp" resultMap="allMusicResultMap" >
-        SELECT a.*,alb.`albumname`,alb.`publishtime` FROM
+        /*SELECT a.*,alb.`albumname`,alb.`publishtime` FROM
         (SELECT mus.*,sing.`songname` FROM wangyimusic mus LEFT JOIN wangyisinger sing ON mus.`singerid`=sing.`singerid`)a
         LEFT JOIN wangyialbum alb ON a.songid=alb.songid
-        WHERE a.id BETWEEN 202373 AND 441612583
+        WHERE a.id BETWEEN 202373 AND 441612583*/
+        SELECT mus.* FROM wangyimusic mus WHERE mus.id BETWEEN 202373 AND 441612583
     </select>
 
     <select id="showAllNew" resultMap="allMusicResultMap" >
+        /*SELECT a.*,alb.`albumname`,alb.`publishtime` FROM
+        (SELECT mus.*,sing.`songname` FROM wangyimusic mus LEFT JOIN wangyisinger sing ON mus.`singerid`=sing.`singerid`)a
+        LEFT JOIN wangyialbum alb ON a.songid=alb.songid
+        WHERE a.id BETWEEN 454931517 AND 512359558*/
+        SELECT mus.* FROM wangyimusic mus WHERE mus.id BETWEEN 454931517 AND 512359558
+    </select>
+
+    <select id="showMusicInformation" resultMap="allMusicResultMap" parameterType="int">
         SELECT a.*,alb.`albumname`,alb.`publishtime` FROM
         (SELECT mus.*,sing.`songname` FROM wangyimusic mus LEFT JOIN wangyisinger sing ON mus.`singerid`=sing.`singerid`)a
         LEFT JOIN wangyialbum alb ON a.songid=alb.songid
-        WHERE a.id BETWEEN 454931517 AND 512359558
+        WHERE a.id = #{id}
     </select>
 
 </mapper>
