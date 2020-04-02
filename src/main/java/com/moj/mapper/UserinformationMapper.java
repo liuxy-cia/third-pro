@@ -12,7 +12,8 @@ public interface UserinformationMapper {
     //查询用户信息
         public Userinformation selectUserinformation(@Param("phone") String phone);
         //修改个人信息
-        public int updateByPrimaryKey(Userinformation id);
-        //添加用户信息
+        public int updateByPrimaryKey(int id, String address, String autograph, Date birtday, String name, String tel, String sex, String introduction, String city);
+
+    //添加用户信息
         public int addUserInfo(@Param("phone")String phone, @Param("name")String name, @Param("buildtime")Date buildtime);
 }

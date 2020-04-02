@@ -6,6 +6,8 @@ import com.moj.service.UserinformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * Created by zzz on 2020/3/26 11:00
  */
@@ -17,6 +19,8 @@ private UserinformationMapper userinformation;
     public Userinformation selectUserinformation(String phone) {
         return userinformation.selectUserinformation(phone);
     }
-
+    public int updateByPrimaryKey(int id, String address, String autograph, Date birtday, String name, String tel, String sex, String introduction, String city) {
+        return userinformation.updateByPrimaryKey(id,address,autograph,birtday,name,tel,sex,introduction,city);
+    }
 
 }
