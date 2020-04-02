@@ -11,6 +11,10 @@ import java.util.List;
 @Repository
 public interface MusicMapper {
 
-    public List<Wangyimusic> showAllMusic();
+    public List<Wangyimusic> showAllHot();
+
+    public List<Wangyimusic> showAllUp();
+
+    public List<Wangyimusic> showAllNew();
 
 }
