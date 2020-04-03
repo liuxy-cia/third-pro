@@ -1,8 +1,9 @@
 package com.moj.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CriticReport {
+public class CriticReport implements Serializable {
     private Integer id;
 
     private Integer pid;
@@ -10,6 +11,8 @@ public class CriticReport {
     private Integer uid;
 
     private Date ctime;
+
+
 
     public Integer getId() {
         return id;
@@ -41,5 +44,23 @@ public class CriticReport {
 
     public void setCtime(Date ctime) {
         this.ctime = ctime;
+    }
+    private Publishcritic publishcritic;
+    private Userinformation userinformation;
+
+    public Publishcritic getPublishcritic() {
+        return publishcritic;
+    }
+
+    public void setPublishcritic(Publishcritic publishcritic) {
+        this.publishcritic = publishcritic;
+    }
+
+    public Userinformation getUserinformation() {
+        return userinformation;
+    }
+
+    public void setUserinformation(Userinformation userinformation) {
+        this.userinformation = userinformation;
     }
 }

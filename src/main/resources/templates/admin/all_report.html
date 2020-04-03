@@ -42,12 +42,12 @@
             </tr>
             <tr th:each="o:${entity}">
                 <td th:text="${o.getUid()}"></td>
-                <td th:text="${o.getUsername()}"></td>
-                <td th:text="${o.getPhone()}"></td>
+                <td th:text="${o.getUserinformation().getName()}"></td>
+                <td th:text="${o.getUserinformation().getPhone()}"></td>
                 <td th:text="${o.getPid()}"></td>
-                <td th:text="${o.getCritic()}"></td>
-                <td><img th:if="${o.getImage()} != null" th:src="${o.getImage()}" style="  width: 50px;    height: 50px;"/></td>
-                <td th:text="${o.getPtime()}"></td>
+                <td th:text="${o.getPublishcritic().getCritic()}"></td>
+                <td><img th:if="${o.getPublishcritic().getPicture()} != null" th:src="${o.getPublishcritic().getPicture()}" style="  width: 50px;    height: 50px;"/></td>
+                <td th:text="${o.getPublishcritic().getTime()}"></td>
                 <td th:text="${o.getCtime()}"></td>
                 <td><button class="not" th:value="${o.getPid()}">禁用</button></td>
             </tr>

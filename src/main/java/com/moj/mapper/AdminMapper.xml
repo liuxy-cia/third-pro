@@ -13,12 +13,12 @@
         select count(id) from userinformation
     </select>-->
     <select id="selectUserInformationbyId" resultType="com.moj.entity.Userinformation">
-             select * from userinformation id=#{id}
+             select * from userinformation where id=#{id}
     </select>
     <select id="selectUserInformationbyname" resultType="com.moj.entity.Userinformation">
-            select * from userinformation name=#{name}
+            select * from userinformation where name=#{name}
     </select>
     <select id="selectUserInformationbyphone" resultType="com.moj.entity.Userinformation">
-            select * from userinformation phone=#{phone}
+            select * from userinformation where 21qphone=#{phone}
     </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.moj.mapper;
 
 import com.moj.entity.Admininformation;
+import com.moj.entity.CriticReport;
 import com.moj.entity.Userinformation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,5 +23,6 @@ public interface AdminMapper {
     //查询条数
    // public int selectCount();
 
-
+        //查询处理
+    public List<CriticReport> find();
 }

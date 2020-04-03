@@ -13,5 +13,8 @@ public class AdminSystemController {
     public String login(){
         return "admin/login";
     }
-
+    @RequestMapping("/all_user")
+  public String all_user(){
+        return "admin/all_user";
+  }
 }

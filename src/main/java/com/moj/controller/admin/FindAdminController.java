@@ -1,7 +1,10 @@
 package com.moj.controller.admin;
 
 import com.moj.entity.Admininformation;
+import com.moj.entity.CriticReport;
+import com.moj.entity.Userinformation;
 import com.moj.service.AdminService;
+import com.moj.service.CriticReportService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
 public class FindAdminController {
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private CriticReportService criticReportService;
 
     @RequestMapping("/login")
     public String login(){
@@ -25,6 +31,8 @@ public class FindAdminController {
     public String login(@RequestParam String username, @RequestParam String password,
                         Model model, HttpServletRequest request){
         System.out.println(123);
+        String name = (String)request.getSession().getAttribute("username");
+        model.addAttribute("name",name);
         if (StringUtils.isBlank(username) && StringUtils.isBlank(password)) {
             model.addAttribute("error", "账号或者密码不能为空");
             return "admin/login";
@@ -39,7 +47,74 @@ public class FindAdminController {
             System.out.println(11111);
             return "admin/login";
         }
-
+        request.getSession().setAttribute("adminInformation", admin);
+        model.addAttribute("name", admin.getName());
         return "admin/index";
+    }
+    @RequestMapping(value = "/findAllUser")
+    public String findAll(@RequestParam(required = false) String start, @RequestParam(required = false) String end,
+                          Model model, HttpServletRequest request) {
+
+        int s, e;
+            if (start==null || start.equals("")) {
+                s = 0;
+            } else {
+                s = Integer.parseInt(start);
+            }
+            if (end==null || end.equals("")) {
+                e = 0;
+            } else {
+                e = Integer.parseInt(end);
+            }
+            Admininformation entity = (Admininformation) request.getSession().getAttribute("adminInformation");
+            if (start==null || start.equals("")) {
+                return "admin/login";
+            }
+            List<Userinformation> entities = this.adminService.selectUserInformation(start,end);
+            model.addAttribute("entity", entities);
+//        model.addAttribute("name", entity.getName());
+            return "admin/all_user";
+        }
+    @RequestMapping(value = "/findUser")
+    public String findUser(@RequestParam(required = false) String start, @RequestParam(required = false) String end,@RequestParam String id, @RequestParam String username, @RequestParam String phone,
+                           Model model, HttpServletRequest request) {
+        Admininformation entity = (Admininformation) request.getSession().getAttribute("adminInformation");
+
+        if (entity==null || entity.equals("")) {
+            return "admin/login";
+        }
+        List<Userinformation> entities;
+        if (id!=null) {
+            entities = adminService.selectUserInformationbyId(Integer.parseInt(id));
+        } else if (username!=null) {
+            entities = adminService.selectUserInformationbyname(username);
+        } else if (phone!=null) {
+            entities =adminService.selectUserInformationbyphone(phone);
+        } else {
+            entities = adminService.selectUserInformation(start,end);
+        }
+        model.addAttribute("entity", entities);
+        return "admin/all_user";
+    }
+    //处理举报
+    @RequestMapping("/findAllReport")
+    public String findReport(Model model, HttpServletRequest request) {
+        Admininformation entity = (Admininformation) request.getSession().getAttribute("adminInformation");
+        if (entity==null || entity.equals("")) {
+            return "admin/login";
+        }
+        List<CriticReport> entities = criticReportService.find();
+        for (CriticReport re : entities) {
+            if (re.getPublishcritic().getPicture()!=null && !re.getPublishcritic().getPicture().startsWith("/")) {
+                re.getPublishcritic().setPicture("/" + re.getPublishcritic().getPicture());
+            }
+            System.out.println(re.getUserinformation().getPhone());
+            System.out.println(re.getPublishcritic().getCritic());
+
+            System.out.println(11);
+        }
+
+        model.addAttribute("entity", entities);
+        return "admin/all_report";
     }
 }
