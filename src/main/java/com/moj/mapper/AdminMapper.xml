@@ -6,4 +6,19 @@
     <select id="findByName" resultType="com.moj.entity.Admininformation">
         select * from admininformation where `name` = #{name}
     </select>
+    <select id="selectUserInformation" resultType="com.moj.entity.Userinformation" parameterType="String" >
+        select * from userinformation limit 0,100
+    </select>
+   <!-- <select id="selectCount" resultType="int" >
+        select count(id) from userinformation
+    </select>-->
+    <select id="selectUserInformationbyId" resultType="com.moj.entity.Userinformation">
+             select * from userinformation id=#{id}
+    </select>
+    <select id="selectUserInformationbyname" resultType="com.moj.entity.Userinformation">
+            select * from userinformation name=#{name}
+    </select>
+    <select id="selectUserInformationbyphone" resultType="com.moj.entity.Userinformation">
+            select * from userinformation phone=#{phone}
+    </select>
 </mapper>
