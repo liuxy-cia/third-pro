@@ -11,5 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MovieController {
 
 
+    @RequestMapping("/allMovie")
+    public String index(){
+
+        return null;
+    }
 
 }
