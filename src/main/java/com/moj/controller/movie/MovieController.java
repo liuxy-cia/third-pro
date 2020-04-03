@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/movie")
 public class MovieController {
 
-    public static void main(String[] args) {
 
-    }
 
 }
