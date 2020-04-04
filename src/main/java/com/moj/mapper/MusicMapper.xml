@@ -14,6 +14,7 @@
         <result column="picurl" property="picurl"></result>
         <result column="url" property="url"></result>
         <result column="status" property="status"></result>
+        <result column="http" property="http"></result>
         <collection property="wangyisinger" ofType="com.moj.entity.Wangyisinger">
             <id column="id" property="id"></id>
             <result column="singerid" property="singerid"></result>
@@ -54,11 +55,12 @@
        /* SELECT mus.* FROM wangyimusic mus WHERE mus.id BETWEEN 454931517 AND 512359558*/
     </select>
 
-    <select id="showMusicInformation" resultMap="allMusicResultMap" parameterType="int">
+    <select id="showMusicInformation" resultMap="allMusicResultMap"  parameterType="int">
         SELECT a.*,alb.`albumname`,alb.`publishtime` FROM
         (SELECT mus.*,sing.`songname` FROM wangyimusic mus LEFT JOIN wangyisinger sing ON mus.`singerid`=sing.`singerid`)a
         LEFT JOIN wangyialbum alb ON a.songid=alb.songid
         WHERE a.id = #{id}
+       /* SELECT * FROM wangyimusic  WHERE id = #{id}*/
     </select>
 
 </mapper>
