@@ -16,4 +16,6 @@ public interface UserinformationMapper {
 
     //添加用户信息
         public int addUserInfo(@Param("phone")String phone, @Param("name")String name, @Param("buildtime")Date buildtime);
+   //修改(禁用)个人状态
+   public int updateUser(@Param("id") int id ,@Param("allowed") int allowed);
 }

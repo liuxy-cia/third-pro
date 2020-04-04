@@ -11,6 +11,6 @@ import java.util.Date;
 public interface UserinformationService {
     public Userinformation selectUserinformation(String phone);
     public int updateByPrimaryKey(int id, String address, String autograph, Date birtday, String name, String tel, String sex, String introduction, String city);
-
+    public int updateUser(int id ,int allowed);
 
 }

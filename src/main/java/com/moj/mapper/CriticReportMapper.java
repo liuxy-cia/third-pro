@@ -14,4 +14,5 @@ import java.util.List;
 public interface CriticReportMapper {
     //查询处理
     public List<CriticReport> find();
+    //
 }

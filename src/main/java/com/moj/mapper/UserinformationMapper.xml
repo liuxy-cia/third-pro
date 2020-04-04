@@ -13,4 +13,7 @@
     <insert id="addUserInfo">
         insert into userinformation(buildtime,name,phone) value (#{buildtime},#{name},#{phone})
     </insert>
+    <update id="updateUser" parameterType="int">
+       UPDATE userinformation SET allowed = #{allowed} WHERE id =#{id}
+    </update>
 </mapper>

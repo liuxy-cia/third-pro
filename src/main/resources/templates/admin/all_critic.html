@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+1<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
@@ -44,14 +44,14 @@
             </tr>
             <tr th:each="o:${entity}">
                 <td th:text="${o.getUid()}"></td>
-                <td th:text="${o.getUsername()}"></td>
-                <td th:text="${o.getPhone()}"></td>
-                <td th:text="${o.getPid()}"></td>
+                <td th:text="${o.getUserinformation().getName()}"></td>
+                <td th:text="${o.getUserinformation().getPhone()}"></td>
+                <td th:text="${o.getId()}"></td>
                 <td th:text="${o.getCritic()}"></td>
                 <td th:text="${o.getTitle()}"></td>
                 <td><img th:if="${o.getPicture()} != null" th:src="${o.getPicture()}" style="  width: 50px;    height: 50px;"/></td>
-                <td th:text="${o.getPtime()}"></td>
-                <td><button class="not" th:value="${o.getPid()}">禁用</button></td>
+                <td th:text="${o.getTime()}"></td>
+                <td><button class="not" th:value="${o.getId()}">禁用</button></td>
             </tr>
         </table>
     </div>

@@ -24,6 +24,15 @@ public class Publishcritic {
     private Short allow;
 
     private String thumbnails;
+    private Userinformation userinformation;
+
+    public Userinformation getUserinformation() {
+        return userinformation;
+    }
+
+    public void setUserinformation(Userinformation userinformation) {
+        this.userinformation = userinformation;
+    }
 
     public Integer getId() {
         return id;

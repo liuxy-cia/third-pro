@@ -64,10 +64,10 @@
 <script>
     $(function () {
         $(".not").click(function () {
-            var uid = $(this).attr("value");
+            var id = $(this).attr("value");
             var url = "/admin/changeAllowed";
-            $.get(url,{uid:uid,allowed:"0"});
-            alert(uid + " - 禁用成功！")
+            $.get(url,{id:id,allowed:"0"});
+            alert(id + " - 禁用成功！")
         });
     });
 </script>

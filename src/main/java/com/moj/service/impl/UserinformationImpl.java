@@ -23,4 +23,9 @@ private UserinformationMapper userinformation;
         return userinformation.updateByPrimaryKey(id,address,autograph,birtday,name,tel,sex,introduction,city);
     }
 
+    @Override
+    public int updateUser(int id, int allowed) {
+        return userinformation.updateUser(id, allowed);
+    }
+
 }

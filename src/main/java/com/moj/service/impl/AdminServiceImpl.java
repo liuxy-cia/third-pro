@@ -1,11 +1,13 @@
 package com.moj.service.impl;
 
+import com.moj.entity.Adminaction;
 import com.moj.entity.Admininformation;
 import com.moj.entity.Userinformation;
 import com.moj.mapper.AdminMapper;
 import com.moj.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
  * Created by yangshen  on 2020/3/23 1:11
  */
 @Service
+@Transactional
 public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
@@ -43,6 +46,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Userinformation> selectUserInformationbyphone(String phone) {
         return adminMapper.selectUserInformationbyphone(phone);
+    }
+
+    @Override
+    public int insert(Adminaction adminaction) {
+        return adminMapper.insert(adminaction);
     }
 
 

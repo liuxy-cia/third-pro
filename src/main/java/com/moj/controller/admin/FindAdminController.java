@@ -1,10 +1,7 @@
 package com.moj.controller.admin;
 
-import com.moj.entity.Admininformation;
-import com.moj.entity.CriticReport;
-import com.moj.entity.Userinformation;
-import com.moj.service.AdminService;
-import com.moj.service.CriticReportService;
+import com.moj.entity.*;
+import com.moj.service.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -22,6 +20,12 @@ public class FindAdminController {
     private AdminService adminService;
     @Autowired
     private CriticReportService criticReportService;
+    @Autowired
+    private PublishcriticService publishcriticService;
+    @Autowired
+    private UserinformationService userinformationService;
+    @Autowired
+    private AdminUserService adminUserService;
 
     @RequestMapping("/login")
     public String login(){
@@ -113,8 +117,45 @@ public class FindAdminController {
 
             System.out.println(11);
         }
-
         model.addAttribute("entity", entities);
         return "admin/all_report";
+    }
+    @RequestMapping( "/findAllCritic")
+    public String findCritic(Model model, HttpServletRequest request) {
+        Admininformation entity = (Admininformation) request.getSession().getAttribute("adminInformation");
+        if (entity == null || entity.equals("")) {
+            return "admin/login";
+        }
+        List<Publishcritic> entities = publishcriticService.selectPub();
+        for (Publishcritic re : entities) {
+            if (re.getPicture()!=null && !re.getPicture().startsWith("/")) {
+                re.setPicture("/" + re.getPicture());
+            }
+            System.out.println(re.getUid());
+            System.out.println(111);
+        }
+            model.addAttribute("entity", entities);
+            return "admin/all_critic";
+        }
+
+    //禁用用户
+    @RequestMapping("/changeAllowed")
+    public String changeAllowed(@RequestParam(value = "allowed") int allowed, @RequestParam("id") int id, HttpServletRequest request) {
+        Admininformation entity = (Admininformation) request.getSession().getAttribute("adminInformation");
+        if (entity==null || entity.equals("")) {
+            System.out.println("管理员未登录!");
+            return "admin/login";
+        }
+        // int i = userinformationService.updateUser(id, allowed);
+        Adminaction adminAction = new Adminaction();
+        adminAction.setAction("管理员" + entity.getName() + ":禁用用户:" + id + ",成功");
+        adminAction.setAid(entity.getId());
+        adminAction.setModified(new Date());
+       /* if (i < 1) {
+            System.out.println("更新失败!");
+            adminAction.setAction("管理员" + entity.getName() + ":禁用用户:" + id + ",失败");
+        }*/
+        adminUserService.allowed(id,allowed,adminAction);
+        return "admin/all_user";
     }
 }

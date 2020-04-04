@@ -1,5 +1,6 @@
 package com.moj.mapper;
 
+import com.moj.entity.Adminaction;
 import com.moj.entity.Admininformation;
 import com.moj.entity.CriticReport;
 import com.moj.entity.Userinformation;
@@ -25,4 +26,6 @@ public interface AdminMapper {
 
         //查询处理
     public List<CriticReport> find();
+//禁用用户，admin添加记录
+    public int insert(@Param("adminaction") Adminaction adminaction);
 }

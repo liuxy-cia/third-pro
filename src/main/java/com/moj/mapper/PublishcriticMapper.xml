@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moj.mapper.PublishcriticMapper">
+    <resultMap id="PublishcriticMap" type="com.moj.entity.Publishcritic">
+        <id column="id" property="id"></id>
+        <result column="critic" property="critic"></result>
+        <result column="good" property="good"></result>
+        <result column="isprivate" property="isprivate"></result>
+        <result column="picture" property="picture"></result>
+        <result column="time" property="time"></result>
+        <result column="title" property="title"></result>
+        <result column="uid" property="uid"></result>
+        <result column="modified" property="modified"></result>
+        <result column="allow" property="allow"></result>
+        <result column="thumbnails" property="thumbnails"></result>
+        <collection property="userinformation" ofType="com.moj.entity.Userinformation">
+            <id column="id" property="id"></id>
+            <result column="address" property="address"></result>
+            <result column="autograph" property="autograph"></result>
+            <result column="birthday" property="birthday"></result>
+            <result column="buildtime" property="buildtime"></result>
+            <result column="label" property="label"></result>
+            <result column="name" property="name"></result>
+            <result column="phone" property="phone"></result>
+            <result column="sex" property="sex"></result>
+            <result column="modified" property="modified"></result>
+            <result column="avatar" property="avatar"></result>
+            <result column="allowed" property="allowed"></result>
+        </collection>
+    </resultMap>
+    <select id="selectPub" resultMap="PublishcriticMap">
+         SELECT pc.id,pc.critic,pc.picture,pc.time ,pc.title,ui.id AS uid, ui.`name` ,ui.phone FROM `publishcritic` pc
+ LEFT JOIN userinformation ui ON pc.uid = ui.id ORDER BY pc.time DESC LIMIT 50
+    </select>
+</mapper>
