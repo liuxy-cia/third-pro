@@ -158,4 +158,13 @@ public class FindAdminController {
         adminUserService.allowed(id,allowed,adminAction);
         return "admin/all_user";
     }
+    //信息审核和举报审核
+    @RequestMapping("/change")
+    public void change(@RequestParam(value = "allowed") int allowed, @RequestParam("uid") int uid, HttpServletRequest request) {
+        Admininformation entity = (Admininformation) request.getSession().getAttribute("adminInformation");
+        if (entity==null || entity.equals("")) {
+            System.out.println("管理员未登录!");
+            return;
+        }
+    }
 }
