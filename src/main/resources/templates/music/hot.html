@@ -164,11 +164,11 @@
                         <td class="music_img" th:title="${o.url}"><a th:href="'/music/information/' + ${o.getId()}"><img th:src="${o.picurl}" class="music_img"/></a>
                         </td>
                         <td class="hd rank" th:title="${o.url}">&nbsp;<a th:href="'/music/information/' + ${o.getId()}"><span class="music_songname"
-                                                                                                                                   th:text="${o.songname}">图片+音乐</span></a>
+                                                                                                                                   th:text="${o.getName()}">图片+音乐</span></a>
                         </td>
-                        <td class="hd music_singername" th:title="${o.url}" th:text="${o.singername}"><a th:href="'/music/information/' + ${o.getId()}">歌手</a></td>
-                        <td class="hd music_albumname" th:title="${o.url}" th:text="${o.albumname}"><a th:href="'/music/information/' + ${o.getId()}">专辑</a></td>
-                        <td class="hd music_publishtime play" th:title="${o.url}" th:text="${o.publishtime}">发布时间</td>
+                        <td class="hd music_singername" th:title="${o.url}" th:text="${o.getWangyisinger().getSongname()}"><a th:href="'/music/information/' + ${o.getId()}">歌手</a></td>
+                        <td class="hd music_albumname" th:title="${o.url}" th:text="${o.getWangyialbum().getAlbumname()}"><a th:href="'/music/information/' + ${o.getId()}">专辑</a></td>
+                        <td class="hd music_publishtime play" th:title="${o.url}" th:text="${o.getWangyialbum().getPublishtime()}">发布时间</td>
                     </tr>
                     </tbody>
                 </table>

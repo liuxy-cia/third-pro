@@ -34,9 +34,9 @@ public class MusicController {
     @RequestMapping(value = "/hot/{type}")
     public String hot(@PathVariable("type") String type, HttpServletRequest request, Model model){
         Userinformation userInformation = (Userinformation) request.getSession().getAttribute("userInformation");
-        if (userInformation.getPhone().isEmpty()) {
+        /*if (userInformation.getPhone().isEmpty()) {
             return "login";
-        }
+        }*/
         List<Wangyimusic> list = new ArrayList<>();
         String title = null;
         switch (type) {
@@ -69,9 +69,9 @@ public class MusicController {
     @RequestMapping(value = "/information/{id}")
     public String information(@PathVariable("id")String id ,HttpServletRequest request, Model model){
         Userinformation userInformation = (Userinformation) request.getSession().getAttribute("userInformation");
-        if (userInformation.getPhone().isEmpty()) {
+       /* if (userInformation.getPhone().isEmpty()) {
             return "login";
-        }
+        }*/
         //返回结果
        // Wangyimusic informationEntity = new Wangyimusic();
         int ids = Integer.parseInt(id);
@@ -103,7 +103,7 @@ public class MusicController {
         model.addAttribute("autograph", userInformation.getAutograph());
         model.addAttribute("action", 6);
         //userController.getUserCounts(model, userInformation.getId());
-        return "music/information";
+        return "redirect:https://music.163.com/#/song?id=65528&autoplay=true&market=baiduhd";
     }
 
 }

@@ -29,14 +29,14 @@ public class BookController {
     private MovieNameMapper movieNameMapper;*/
 
     // 初始化图书信息
-    @RequestMapping(value = "/init")
+    @RequestMapping("/init")
     public String bookInit(HttpServletRequest request, Model model){
         Userinformation userInformation = (Userinformation) request.getSession().getAttribute("userInformation");
         List<Book> entities = bookService.findAllBook();
-        for (Book entity : entities) {
+        /*for (Book entity : entities) {
             entity.setTranslator(entity.getTranslator().replace("[\"", "").replace("\"]", "").replace("\"", ""));
             entity.setAuthor(entity.getAuthor().replace("[\"", "").replace("\"]", "").replace("\"", ""));
-        }
+        }*/
        /* model.addObject("entity",entities);
         model.setViewName();*/
         Myfriends myfriends = new Myfriends();
