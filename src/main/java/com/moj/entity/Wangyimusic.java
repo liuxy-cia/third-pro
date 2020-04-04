@@ -23,6 +23,16 @@ public class Wangyimusic {
 
     private Wangyialbum wangyialbum;
 
+    private String http;
+
+    public String getHttp() {
+        return http;
+    }
+
+    public void setHttp(String http) {
+        this.http = http;
+    }
+
     public Wangyisinger getWangyisinger() {
         return wangyisinger;
     }
