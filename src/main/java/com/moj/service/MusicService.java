@@ -18,4 +18,8 @@ public interface MusicService {
 
     public Wangyimusic showMusicInformation(int id);
 
+    public List<Wangyimusic> findObscure(String name);
+
+    //public List<Wangyimusic> showAllMusic();
+
 }

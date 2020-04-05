@@ -60,7 +60,20 @@
         (SELECT mus.*,sing.`songname` FROM wangyimusic mus LEFT JOIN wangyisinger sing ON mus.`singerid`=sing.`singerid`)a
         LEFT JOIN wangyialbum alb ON a.songid=alb.songid
         WHERE a.id = #{id}
-       /* SELECT * FROM wangyimusic  WHERE id = #{id}*/
+    </select>
+
+    <select id="findObscure" resultMap="allMusicResultMap" parameterType="String">
+        SELECT a.*,alb.`albumname`,alb.`publishtime` FROM
+        (SELECT mus.*,sing.`songname` FROM wangyimusic mus LEFT JOIN wangyisinger sing ON mus.`singerid`=sing.`singerid`)a
+        LEFT JOIN wangyialbum alb ON a.songid=alb.songid
+        WHERE (`name` LIKE "%${name}%" OR songname LIKE "%${name}%")
+    </select>
+
+    <select id="showAllMusic" resultMap="allMusicResultMap" >
+        SELECT a.*,alb.`albumname`,alb.`publishtime` FROM
+        (SELECT mus.*,sing.`songname` FROM wangyimusic mus LEFT JOIN wangyisinger sing ON mus.`singerid`=sing.`singerid`)a
+        LEFT JOIN wangyialbum alb ON a.songid=alb.songid
+
     </select>
 
 </mapper>

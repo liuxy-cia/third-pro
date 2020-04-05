@@ -20,4 +20,8 @@ public interface MusicMapper {
 
     public Wangyimusic showMusicInformation(@Param("id")int id);
 
+    public List<Wangyimusic> findObscure(@Param("name")String name);
+
+    public List<Wangyimusic> showAllMusic();
+
 }
